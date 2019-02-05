@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="all">
+        <item
+            android:id="@+id/upComming_Matches"
+            android:icon="@drawable/nav_upcomming_matches"
+            android:title="Upcomming Matches" />
+
+        <item
+            android:id="@+id/players"
+            android:icon="@drawable/nav_player"
+            android:title="Players" />
+        <item
+            android:id="@+id/live_scores"
+            android:icon="@drawable/nav_live_score"
+            android:title="Live Scores" />
+        <item
+            android:id="@+id/notification"
+            android:icon="@drawable/nav_alerts"
+            android:title="Alerts" />
+        <item
+            android:id="@+id/results"
+            android:icon="@drawable/results_list_icon"
+            android:title="Results" />
+
+
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "965012338580",
+    "firebase_url": "https://cricinfo-8ffa2.firebaseio.com",
+    "project_id": "cricinfo-8ffa2",
+    "storage_bucket": "cricinfo-8ffa2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:965012338580:android:ef2013d9682fa630",
+        "android_client_info": {
+          "package_name": "com.example.shahz.cricinfo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "965012338580-ithb92sqcnq5kmpqcacaeeu43e1qrvgl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shahz.cricinfo",
+            "certificate_hash": "1046d50238b975ef729b32b6e75718561832b2e9"
+          }
+        },
+        {
+          "client_id": "965012338580-49knbd4l3r5vs47jr1rsbm8k7v67hite.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5iH2WFNx5dDe6A3u8eVNU3pOsCZ6tOm8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "965012338580-49knbd4l3r5vs47jr1rsbm8k7v67hite.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
