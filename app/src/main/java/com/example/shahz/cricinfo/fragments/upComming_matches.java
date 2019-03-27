@@ -83,7 +83,7 @@ public class upComming_matches extends Fragment {
     private void getFireStoreData()
     {
         Query fireStoreQuarry=firestore.collection("Matches")
-                .orderBy("time", Query.Direction.DESCENDING)
+                .orderBy("timestamp", Query.Direction.DESCENDING)
                 .limit(5);
 
         fireStoreQuarry.addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -133,6 +133,12 @@ public class upComming_matches extends Fragment {
                                 matchesDataList.add(matchesData);
                                 upcomming_matches_adapter.notifyDataSetChanged();
                             } else if (documentChange.getType() == DocumentChange.Type.MODIFIED) {
+                                upcomming_matches_adapter.notifyDataSetChanged();
+                            }
+                            else if (documentChange.getType() == DocumentChange.Type.REMOVED)
+                            {
+                                Upcomming_Matches_Adapter.ViewHolder viewHolder;
+
                                 upcomming_matches_adapter.notifyDataSetChanged();
                             }
 

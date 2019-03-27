@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class MatchesData {
     private String team1,team2,time,date,description;
-
+    private Date timestamp;
 
     public MatchesData(){};
 

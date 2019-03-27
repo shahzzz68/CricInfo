@@ -55,6 +55,12 @@ public class Upcomming_Matches_Adapter extends RecyclerView.Adapter<Upcomming_Ma
         String time= matchesDataList.get(position).getTime();
         holder.setTime(time);
 
+        if(matchesDataList.get(position) == null)
+        {
+            matchesDataList.remove(position);
+        }
+
+
 
 //            long millisecond = matchesDataList.get(position).getTimeStamp().getTime();
 //            String dateformat = android.text.format

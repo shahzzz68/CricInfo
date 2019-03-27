@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="400dp"
+    android:layout_gravity="center"
+    android:paddingTop="32dp"
+    android:paddingBottom="72dp"
+    android:orientation="vertical"
+    android:paddingEnd="32dp"
+    android:paddingStart="32dp"
+
+    tools:context=".fragments.Dialog_Notificaiton_detail">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Notifcation details"
+        android:textSize="28sp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/DialogTitleTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:layout_marginTop="24sp"
+        android:textSize="24sp"
+        android:gravity="start"/>
+
+    <TextView
+        android:id="@+id/DialogBodyTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Body"
+        android:textSize="24sp"
+        android:gravity="start"/>
+
+
+
+</LinearLayout>

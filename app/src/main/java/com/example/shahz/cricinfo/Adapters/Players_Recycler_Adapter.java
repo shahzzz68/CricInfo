@@ -1,12 +1,12 @@
 package com.example.shahz.cricinfo.Adapters;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +17,9 @@ import android.widget.Toast;
 
 import com.example.shahz.cricinfo.R;
 import com.example.shahz.cricinfo.model_class.Players_data;
-import com.example.shahz.cricinfo.Players_detail_fragment;
+import com.example.shahz.cricinfo.fragments.Players_detail_fragment;
+import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,7 +39,7 @@ public class Players_Recycler_Adapter extends RecyclerView.Adapter<Players_Recyc
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.players_detail_item,parent,false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.single_players_detail_item,parent,false);
         return new ViewHolder(view);
     }
 
@@ -56,6 +58,17 @@ public class Players_Recycler_Adapter extends RecyclerView.Adapter<Players_Recyc
         final String team= playersData.get(position).getTeam();
         holder.setTeam(team);
 
+        String image= playersData.get(position).getImageUrl();
+        try {
+            holder.setProfileImg(image);
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(context, e.getMessage().toString()+" No image path found for some images", Toast.LENGTH_LONG).show();
+        }
+
+
+
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,10 +84,6 @@ public class Players_Recycler_Adapter extends RecyclerView.Adapter<Players_Recyc
                 Players_detail_fragment playersDetailFragment=new Players_detail_fragment();
                 playersDetailFragment.setArguments(bundle);
                 playersDetailFragment.show(((FragmentActivity)context).getSupportFragmentManager(),"string");
-
-//                ((FragmentActivity)context).getSupportFragmentManager().beginTransaction()
-//                        .add(R.id.mainLayout,fragment)
-//                        .addToBackStack(null).commit();
 
 
 
@@ -98,6 +107,7 @@ public class Players_Recycler_Adapter extends RecyclerView.Adapter<Players_Recyc
         TextView type;
         TextView style;
         TextView team;
+        CircularImageView profileImg;
         ConstraintLayout parentLayout;
 
 
@@ -130,6 +140,21 @@ public class Players_Recycler_Adapter extends RecyclerView.Adapter<Players_Recyc
         {
             team=holderView.findViewById(R.id.playerTeamTxt);
             team.setText(string);
+
+        }
+
+        public void setProfileImg(String s)
+        {
+
+                profileImg=holderView.findViewById(R.id.playerProfileImg);
+                Picasso.get()
+                        .load(s)
+                        .centerCrop()
+                        .placeholder(R.drawable.default_profile_image)
+                        .fit()
+                        .centerCrop()
+                        .into(profileImg);
+
 
         }
 

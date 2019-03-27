@@ -25,21 +25,14 @@
             android:id="@+id/results"
             android:icon="@drawable/results_list_icon"
             android:title="Results" />
+        <item
+            android:id="@+id/videoGallery"
+            android:icon="@drawable/video_library_icon_24dp"
+            android:title="Video Gallery" />
+
 
 
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
 
 </menu>

@@ -1,4 +1,4 @@
-package com.example.shahz.cricinfo;
+package com.example.shahz.cricinfo.fragments;
 
 
 import android.app.Dialog;
@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
+
+import com.example.shahz.cricinfo.R;
 
 
 /**
@@ -41,7 +43,7 @@ public class Players_detail_fragment extends DialogFragment {
          type = mView.findViewById(R.id.playerType);
          team = mView.findViewById(R.id.playerTeam);
 
-        playerName.setText(this.getArguments().getString("name"));
+        playerName.setText(getArguments().getString("name"));
         style.setText(getArguments().getString("style"));
         team.setText(getArguments().getString("team"));
         type.setText(getArguments().getString("type"));

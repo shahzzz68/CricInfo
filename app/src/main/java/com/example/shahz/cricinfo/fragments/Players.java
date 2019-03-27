@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -35,7 +36,10 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -55,8 +59,8 @@ public class Players extends Fragment {
     private List<Example> exampleList;
     private Players_Recycler_Adapter playersRecyclerAdapter;
     private RecyclerView recyclerView;
-    String spinnerText;
-    ItemClick itemClick;
+    private ItemClick itemClick;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
 
 
@@ -72,6 +76,7 @@ public class Players extends Fragment {
         View view= inflater.inflate(R.layout.fragment_players, container, false);
 
         rootView=view;
+        swipeRefreshLayout=view.findViewById(R.id.swipeRefresh);
         playersDataClass=new ArrayList<>();
         playerList=new ArrayList<>();
         deptList= new ArrayList<>();
@@ -83,10 +88,36 @@ public class Players extends Fragment {
 
         recyclerView=view.findViewById(R.id.playersRecyclerView);
 
+
         itemClick=new ItemClick();
 
         setAdapter();
-        DocumentList();
+
+        if (savedInstanceState==null)
+        {
+            DocumentList();
+        }
+        else
+        {
+
+            DocumentList();
+            Spinner();
+            spinner.setSelection(savedInstanceState.getInt("position"));
+            String name=savedInstanceState.getString("item","it");
+            LoadPlayerFields(name);
+        }
+
+
+//        swipeRefreshLayout.post(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//
+//
+//            }
+//        });
+
+
 
 
         return view;
@@ -107,7 +138,8 @@ public class Players extends Fragment {
                     }
 
            /////////////   SPINNER CALL/////////////
-                    Spinner(documentList);
+                    Spinner();
+                    SwipeRefreshListner(documentList);
            ///////////////////////////////////////////
                 } else {
                     Toast.makeText(getActivity(), ""+task.getException(), Toast.LENGTH_SHORT).show();
@@ -117,7 +149,7 @@ public class Players extends Fragment {
     }
 
 
-    private void Spinner(List<String> list)
+    private void Spinner()
     {
         ArrayAdapter<String> adp1 = new ArrayAdapter<String>(rootView.getContext(),
                 android.R.layout.simple_spinner_item, documentList);
@@ -128,10 +160,10 @@ public class Players extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                int spinnerPosition;
+                int position=adapterView.getSelectedItemPosition();
                 String text= spinner.getSelectedItem().toString();
                    setSpinnerText(text);
-                   itemClick.setPosition(i);
+                   itemClick.setPosition(position);
                 //Toast.makeText(adapterView.getContext(), String.valueOf(itemClick.getPosition()), Toast.LENGTH_SHORT).show();
 
 
@@ -148,13 +180,14 @@ public class Players extends Fragment {
     }
     private void setSpinnerText(String string)
     {
-        playersDataClass.clear();
-        String text=string;
-        LoadPlayerFields(text);
+
+                playersDataClass.clear();
+                LoadPlayerFields(string);
+
     }
 
 
-    private void LoadPlayerFields(String deptName)
+    private void LoadPlayerFields(final String deptName)
     {
 
 
@@ -170,6 +203,10 @@ public class Players extends Fragment {
                             playersDataClass.add(players_data);
                             playersRecyclerAdapter.notifyDataSetChanged();
 
+                        }
+                        else if (documentChange.getType() == DocumentChange.Type.REMOVED)
+                        {
+                            playersRecyclerAdapter.notifyDataSetChanged();
                         }
 
 
@@ -197,29 +234,43 @@ public class Players extends Fragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("position",itemClick.getPosition());
+        outState.putString("item", spinner.getSelectedItem().toString());
+        Toast.makeText(getActivity(), spinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+
 
 
     }
 
-    public void SpinnerPos()
+
+
+    public void SwipeRefreshListner(final List<String> strings)
     {
-       ItemClick itemClick=new ItemClick();
-        Toast.makeText(getActivity(), String.valueOf(itemClick.getPosition()), Toast.LENGTH_SHORT).show();
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+//                DocumentList();
+                swipeRefreshLayout.setRefreshing(false);
+                getActivity().recreate();
+
+            }
+        });
 
     }
 
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//        if (savedInstanceState!=null)
-//        {
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+        if (savedInstanceState!=null)
+        {
 //            int i=savedInstanceState.getInt("position");
-//            spinner.setSelection(i);
-//        }
-//
-//    }
+//            spinner.setSelected(true);
+
+
+        }
+    }
 }
 
 

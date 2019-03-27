@@ -2,5 +2,9 @@
 <resources>
     <color name="colorPrimary">#3c3131</color>
     <color name="colorPrimaryDark">#2d2e31</color>
-    <color name="colorAccent">#3c3131</color>
+    <color name="colorAccent">#000000</color>
+
+    <color name="colorWhite">#ffffff</color>
+
+    <color name="matchVIewteamtextBg">#f0e9e9</color>
 </resources>

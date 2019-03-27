@@ -1,19 +1,18 @@
 package com.example.shahz.cricinfo.model_class;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class Players_data {
 
-private String name,style,team,type;
+private String name,style,team,type,imageUrl;
 
 public  Players_data(){}
 
-    public Players_data(String name, String style, String team, String type) {
+    public Players_data(String name, String style, String team, String type, String imageUrl) {
         this.name = name;
         this.style = style;
         this.team = team;
         this.type = type;
+        this.imageUrl = imageUrl;
     }
 
     public String getName() {
@@ -46,5 +45,13 @@ public  Players_data(){}
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
