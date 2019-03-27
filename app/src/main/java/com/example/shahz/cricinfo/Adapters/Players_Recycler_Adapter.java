@@ -1,7 +1,6 @@
 package com.example.shahz.cricinfo.Adapters;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -17,7 +16,7 @@ import android.widget.Toast;
 
 import com.example.shahz.cricinfo.R;
 import com.example.shahz.cricinfo.model_class.Players_data;
-import com.example.shahz.cricinfo.fragments.Players_detail_fragment;
+import com.example.shahz.cricinfo.Dialogs.Players_detail_fragment;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 

@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.shahz.cricinfo.R;
-import com.example.shahz.cricinfo.fragments.Dialog_Notificaiton_detail;
+import com.example.shahz.cricinfo.Dialogs.Dialog_Notificaiton_detail;
 import com.example.shahz.cricinfo.model_class.Notification_data;
 
 import java.util.List;
